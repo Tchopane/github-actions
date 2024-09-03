@@ -47,7 +47,7 @@ async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, com
         containerOverrides: [
           {
             name: containerName,
-            command: ["sh", "-c", command],
+            command: [command],
           },
         ],
       },
