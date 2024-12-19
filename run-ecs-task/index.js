@@ -11,6 +11,7 @@ async function run() {
     const givenTaskDefinition = core.getInput("task-definition", { required: false });
     const waitForCompletion = core.getInput("wait-for-completion", { required: false });
     const showRawOutput = core.getInput("show-raw-output", { required: false });
+    const launchType = core.getInput("launch-type", { required: false });
 
     const ecs = new ECS();
 
@@ -22,7 +23,8 @@ async function run() {
       command,
       givenTaskDefinition,
       waitForCompletion,
-      showRawOutput
+      showRawOutput,
+      launchType
     })
   } catch (error) {
     core.setFailed(error.message);

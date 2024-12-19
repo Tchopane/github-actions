@@ -23,6 +23,10 @@ inputs:
   show-raw-output:
     description: "Display task logs"
     default: false
+  launch-type:
+    description: 'Launch type for the task (EC2 or FARGATE)'
+    required: false
+    default: 'FARGATE'
 
 outputs:
   console_url:
