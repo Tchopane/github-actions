@@ -12,6 +12,7 @@ async function run() {
     const waitForCompletion = core.getInput("wait-for-completion", { required: false });
     const showRawOutput = core.getInput("show-raw-output", { required: false });
     const launchType = core.getInput("launch-type", { required: false });
+    core.debug(`Launch type from input: ${launchType}`);
 
     const ecs = new ECS();
 

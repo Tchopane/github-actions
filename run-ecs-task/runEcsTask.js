@@ -38,6 +38,7 @@ async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, com
     service.taskSets[0].networkConfiguration
 
   core.debug(`Running ${command} command in ${taskDefinition.taskDefinitionArn}`);
+  core.debug(`Launch type before runTask: ${launchType}`);
   const taskResponse = await ecs
     .runTask({
       cluster,
