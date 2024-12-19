@@ -32659,6 +32659,15 @@ async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, com
       },
       networkConfiguration
     })
+  
+  core.debug(`Task Response: ${JSON.stringify(taskResponse, null, 2)}`);
+
+  if (!taskResponse.tasks || taskResponse.tasks.length === 0) {
+    if (taskResponse.failures) {
+      throw new Error(`Failed to start task: ${JSON.stringify(taskResponse.failures)}`);
+    }
+    throw new Error('No task started and no failure information available');
+  }
 
   const taskArn = taskResponse.tasks[0].taskArn;
   const taskArnParts = taskArn.split(":");
