@@ -2,7 +2,7 @@ const core = require("@actions/core");
 const readTaskLogs = require("./readTaskLogs")
 const waitTaskToComplete = require("./waitTaskToComplete")
 
-async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, command, givenTaskDefinition, waitForCompletion, showRawOutput }) {
+async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, command, givenTaskDefinition, waitForCompletion, showRawOutput, launchType }) {
   core.debug("Describing ecs services");
   const servicesResponse = await ecs
     .describeServices({ cluster, services: [serviceName] })
@@ -42,7 +42,7 @@ async function runEcsTask({ ecs, cluster, serviceName, definedContainerName, com
     .runTask({
       cluster,
       taskDefinition: taskDefinition.taskDefinitionArn,
-      launchType: "FARGATE",
+      launchType: launchType || "FARGATE",
       overrides: {
         containerOverrides: [
           {
